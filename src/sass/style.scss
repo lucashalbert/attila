@@ -549,7 +549,7 @@ img[src$="#full"] {
 	max-width: 6em;
 	left: 0;
 	top: 0;
-	margin: 1em;
+	margin: 2em;
 	z-index: 200;
 }
 .blog-logo img {
@@ -616,11 +616,38 @@ img[src$="#full"] {
 	display: block;
 }
 
-
 .inner {
 	max-width: 55em;
 	margin: 0 auto;
 	padding: 0 2em;
+}
+
+
+/*Light Switch*/
+.lightswitch {
+	position: fixed;
+    width: 6em;
+    left: 0;
+    top: 0;
+    z-index: 200;
+    margin-left: 2em;
+    text-align: center;
+}
+
+input#lightswitch:hover {
+  background: #ddca7e;
+  color: $color-white;
+  cursor: pointer;
+}
+
+#wrapper.dark-mode {
+    background: $color-gray-20;
+}
+.post-title.dark-mode, .post-excerpt.dark-mode, .post-content.dark-mode, .post-info.dark-mode, .pagination-info.dark-mode, .credits.dark-mode, h1.dark-mode, h2.dark-mode, h3.dark-mode, h4.dark-mode, h5.dark-mode, h6.dark-mode, .dark-mode h1, .dark-mode h2, .dark-mode h3, .dark-mode h4, .dark-mode h5, .dark-mode h6, .dark-mode a, .dark-mode p, .dark-mode em, .dark-mode strong, .dark-mode li:before, .dark-mode {
+    color: $color-white;
+}
+.dark-mode code, .dark-mode blockquote * {
+    color: $color-black;
 }
 
 /* ==========================================================================

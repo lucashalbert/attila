@@ -156,4 +156,69 @@ jQuery(function($) {
 			$(this).parent().addClass('activated');
 		});
 	}
+
+	/* ==========================================================================
+	   Dark/Light Mode
+	   ========================================================================== */
+
+	function darkMode() {
+		$('#wrapper').addClass('dark-mode');
+		$('.post-title').addClass('dark-mode');
+		$('.post-excerpt').addClass('dark-mode');
+		$('.post-info').addClass('dark-mode');
+		$('.pagination-info').addClass('dark-mode');
+		$('.credits').addClass('dark-mode');
+		$('#lightswitch').prop('value', 'Day Mode');
+		localStorage.setItem('lightDarkMode', JSON.stringify({'mode': 'dark' }));
+	};
+
+	function lightMode() {
+		$('#wrapper').removeClass('dark-mode');
+		$('.post-title').removeClass('dark-mode');
+		$('.post-excerpt').removeClass('dark-mode');
+		$('.post-info').removeClass('dark-mode');
+		$('.pagination-info').removeClass('dark-mode');
+		$('.credits').removeClass('dark-mode');
+		$('#lightswitch').prop('value', 'Night Mode');
+		localStorage.setItem('lightDarkMode', JSON.stringify({'mode': 'light' }));
+	};
+
+	function checkLightDarkMode() {
+		storedLightDarkMode = JSON.parse(localStorage.getItem('lightDarkMode'));
+		if (storedLightDarkMode.mode == 'light') {
+			lightMode();
+			return 'light';
+		} else if (storedLightDarkMode.mode == 'dark') {
+			darkMode();
+			return 'dark';
+		} else {
+			console.log('current light/dark mode could not be determined... Setting to light mode');
+			lightMode();
+			return 'light';
+		}
+
+	};
+
+	if (localStorage.getItem('lightDarkMode') === null) {
+		lightMode();
+	} else {
+		storedLightDarkMode = JSON.parse(localStorage.getItem('lightDarkMode'));
+		if (storedLightDarkMode.mode == 'light') {
+			lightMode();
+		} else {
+			darkMode();
+		}
+		delete storedLightDarkMode;
+	}
+
+	$('input#lightswitch').on('click', function(){
+		mode=checkLightDarkMode();
+		if(mode == 'light') {
+			darkMode();
+		} else if(mode == 'dark') {
+			lightMode();
+		} else {
+			console.log ('light dark mode switching errors...');
+		}
+	});
 });
